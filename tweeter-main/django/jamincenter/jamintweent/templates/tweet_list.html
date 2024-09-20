@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Jamin
+{% endblock title %}
+
+{% block content %}
+<h1 class="text-center mt-4">Welcome to the Tweet by Jamin</h1>
+<a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}">Create a Tweet</a>
+
+<div class="container row gap-3">
+    {% for tweet in tweets %}
+    <div class="card animated-card" style="width: 18rem;">
+        <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ tweet.user.username }}</h5>
+          <p class="card-text">{{ tweet.text }}</p>
+          <a href="{% url 'tweet_edit' tweet.id%}" class="btn btn-primary">Edit</a>
+          <a href="{% url 'tweet_delete' tweet.id%}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
+<style>
+.animated-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.animated-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.animated-card img {
+    transition: transform 0.3s ease;
+}
+
+.animated-card img:hover {
+    transform: scale(1.1);
+}
+
+.btn-primary, .btn-danger {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    transform: translateY(-2px);
+    background-color: darken(#007bff, 10%);
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+</style>

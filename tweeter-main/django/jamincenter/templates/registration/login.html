@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg animated-card">
+                <div class="card-body">
+                    <h2 class="text-center mb-4 animate__animated animate__fadeIn">Login Form</h2>
+                    <form method="post" class="animate__animated animate__fadeIn animate__delay-1s">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button class="btn btn-primary btn-block mt-3 animate__animated animate__pulse animate__infinite">Login</button>
+                    </form>
+                    <p class="text-center mt-3">Don't have an account? <a href="{% url 'register' %}" class="text-primary animate__animated animate__fadeIn">Register Here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+{% endblock content %}
